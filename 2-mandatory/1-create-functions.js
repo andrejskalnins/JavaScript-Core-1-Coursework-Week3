@@ -3,7 +3,9 @@ Write a function that:
 - Accepts an array as a parameter.
 - Returns a new array containing the first five elements of the passed array.
 */
-function first5() {
+
+function first5(array) {
+  return array.slice(0, 5);
 }
 
 /*
@@ -11,7 +13,9 @@ Write a function that:
 - Accepts an array as a parameter.
 - Returns a new array containing the same elements, except sorted.
 */
-function sortArray() {
+
+function sortArray(array) {
+  return array.slice().sort();
 }
 
 /*
@@ -24,7 +28,11 @@ Write a function that:
 - Removes any forward slashes (/) in the strings.
 - Makes the strings all lowercase.
 */
-function tidyUpString() {
+
+function tidyUpString(arrayOfStrings) {
+  return arrayOfStrings.map((item) =>
+    item.trim().replace("/", "").toLowerCase()
+  );
 }
 
 /*
@@ -32,10 +40,13 @@ Write a function that:
 - Takes an array and an index as input.
 - Returns a new array containing the same elements, but without the element at the passed index.
 */
-
-function remove() {
+let number2 = [1, 2, 3];
+function remove(array, index) {
+  let newArray = array.slice();
+  newArray.splice(index, 1);
+  return newArray;
 }
-
+console.log(remove(number2, 1));
 /*
 Write a function that:
 - Takes an array of numbers as input.
@@ -43,10 +54,16 @@ Write a function that:
 - The numbers must be rounded to 2 decimal places.
 - Numbers greater 100 must be replaced with 100.
 */
-
-function formatPercentage() {
+let testNr = [23, 18.103, 187.2, 0.372];
+function formatPercentage(arrayOfNumbers) {
+  return arrayOfNumbers.map((nr) => {
+    if (nr > 100) {
+      return (nr = 100 + "%");
+    }
+    return `${Math.round(nr * 100) / 100}%`;
+  });
 }
-
+console.log(formatPercentage(testNr));
 /* ======= TESTS - DO NOT MODIFY ===== */
 
 test("first5 function works for more than five elements", () => {
