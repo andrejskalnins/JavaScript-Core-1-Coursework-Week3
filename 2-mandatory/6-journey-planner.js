@@ -20,8 +20,8 @@
 function checkCodeIsThere(stringText) {
   let magicWord = "code";
   //edit code below
-  if (stringText) {
-    return stringText;
+  if (stringText.includes(magicWord)) {
+    return stringText.indexOf(magicWord);
   } else {
     return "Not found";
   }
@@ -64,7 +64,10 @@ function checkCodeIsThere(stringText) {
   
   Hint: Use the corresponding array method to split the array.
 */
-function getTransportModes() {}
+function getTransportModes(transportArray) {
+  transportArray.shift();
+  return transportArray;
+}
 
 /*
   Implement the function isAccessibleByTransportMode that
@@ -81,7 +84,9 @@ function getTransportModes() {}
     
   Hint: Use the corresponding array method to decide if an element is member of an array.
 */
-function isAccessibleByTransportMode() {}
+function isAccessibleByTransportMode(transportModeList, transportModeString) {
+  return transportModeList.includes(transportModeString);
+}
 
 /*
   Implement the function getLocationName that
@@ -92,7 +97,9 @@ function isAccessibleByTransportMode() {}
    - Returns the name of the location
       e.g: "Tower Bridge"
 */
-function getLocationName() {}
+function getLocationName(infoArray) {
+  return infoArray[0];
+}
 
 /*
  We arrived at the final method. it won't take long if you use the previously implemented functions wisely.
@@ -121,8 +128,16 @@ function getLocationName() {}
    
   Advanced challange: try to use arrow function when invoking an array method.
 */
-function journeyPlanner(locations, transportMode) {
+function journeyPlanner(locAndTransList, transModeStr) {
   // Implement the function body
+
+  return locAndTransList
+    .map((location) => {
+      if (isAccessibleByTransportMode(location, transModeStr)) {
+        return getLocationName(location);
+      }
+    })
+    .filter((locationName) => locationName !== undefined);
 }
 
 /* ======= TESTS - DO NOT MODIFY ===== */
@@ -137,7 +152,7 @@ const londonLocations = [
   ["Tower Bridge", "tube", "bus"],
   ["Greenwich", "bus", "river boat"],
 ];
-
+console.log(journeyPlanner(londonLocations, "river boat"));
 describe("checkCodeIsThere", () => {
   test("finds code", () => {
     expect(checkCodeIsThere(string1)).toEqual(26);
