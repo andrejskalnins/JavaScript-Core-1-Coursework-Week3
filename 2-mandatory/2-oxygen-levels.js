@@ -10,8 +10,19 @@
 
     Some string methods that might help you here are .replace() and .substring(). 
 */
+//
+function findSafeOxygenLevel(array) {
+  return array.find((oxygenReading) => {
+    if (oxygenReading.includes("%")) {
+      oxygenReading.replace("%", "");
+      let oxygenReadingToNum = parseFloat(oxygenReading);
 
-function findSafeOxygenLevel() {}
+      if (oxygenReadingToNum > 19.5 && oxygenReadingToNum < 23.5) {
+        return oxygenReadingToNum;
+      }
+    }
+  });
+}
 
 /* ======= TESTS - DO NOT MODIFY ===== */
 
