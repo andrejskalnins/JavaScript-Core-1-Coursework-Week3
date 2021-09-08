@@ -15,8 +15,31 @@
   
 */
 
-function getSettlers() {}
-
+function getSettlers(inputArray) {
+  return inputArray.filter((family) => {
+    if (family.charAt(0) === "A" && family.includes("family")) {
+      return family;
+    }
+  });
+}
+console.log(
+  getSettlers([
+    "Adam family",
+    "Potter family",
+    "Eric",
+    "Aldous",
+    "Button family",
+    "Jude",
+    "Carmichael",
+    "Bunny",
+    "Asimov",
+    "Oscar family",
+    "Avery family",
+    "Archer family",
+    "Just A. family",
+    "A Great family",
+  ])
+);
 /* ======= TESTS - DO NOT MODIFY ===== */
 
 test("getSettlers function works", () => {
